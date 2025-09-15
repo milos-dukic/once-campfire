@@ -20,6 +20,11 @@ would deploy multiple instances of the application.
     bin/setup
     bin/rails server
 
+## Running tests
+  Make sure you have installed **ffmpeg**, otherwise tests will fail.
+
+    bin/rails test
+
 ## Deploying with Docker
 
 Campfire's Docker image contains everything needed for a fully-functional,
