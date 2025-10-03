@@ -29,7 +29,17 @@
     <%= yield :head %>
   </head>
 
+  <% if current_user_id%>
+  <body class="<%= body_classes %>"
+    data-controller="local-time lightbox user-status"
+    data-action="visibilitychange@document->user-status#visibilityChanged"
+    data-user-status-user-id-param=<%= current_user_id %>
+    data-user-status-user-id-value=<%= current_user_id %>
+    data-user-status-target="main"
+  >
+  <% else %>
   <body class="<%= body_classes %>" data-controller="local-time lightbox">
+  <% end %>
     <a href="#main-content" class="skip-navigation btn">Skip to main content</a>
 
     <nav id="nav">

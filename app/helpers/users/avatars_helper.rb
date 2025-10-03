@@ -11,8 +11,25 @@ module Users::AvatarsHelper
   end
 
   def avatar_tag(user, **options)
-    link_to user_path(user), title: user.title, class: "btn avatar", data: { turbo_frame: "_top" } do
-      image_tag fresh_user_avatar_path(user), aria: { hidden: "true" }, size: 48, **options
+    if options[:hide_status]
+      link_to user_path(user), title: user.title, class: "btn avatar user-status-container", data: { turbo_frame: "_top" } do
+        image_tag(fresh_user_avatar_path(user), aria: { hidden: "true" }, size: 48, **options)
+      end
+    else
+      link_to user_path(user), title: user.title, class: "btn avatar user-status-container", data: { turbo_frame: "_top" } do
+        image_tag(fresh_user_avatar_path(user), aria: { hidden: "true" }, size: 48, **options) +
+        user_status_tag(user, options[:large_avatar])
+      end
     end
+  end
+
+  def user_status_tag(user, large_avatar = false)
+    return content_tag(:div, "", class: "user-status user-status-bot-always-active") if is_user_bot?(user)
+
+    content_tag(:div, "", class: class_names("user-status", 'user-status-large': large_avatar), data: {
+      controller: "user-status-avatar",
+      user_status_avatar_user_id_value: user.id,
+      user_status_avatar_target: "avatar"
+    })
   end
 end

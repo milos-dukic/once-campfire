@@ -201,3 +201,28 @@
     }
   }
 }
+
+.user-status {
+  border-radius: 50%;
+  border: 2px solid black;
+  width: 16px;
+  height: 16px;
+  background: gray;
+  z-index: 1;
+  position: absolute;
+  bottom: -4px;
+  left: -4px;
+}
+
+.user-status-large {
+  width: 32px;
+  height: 32px;
+}
+
+.user-status-bot-always-active {
+  background: green;
+}
+
+.user-status-container {
+  position: relative;
+}

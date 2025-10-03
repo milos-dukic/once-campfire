@@ -6,14 +6,16 @@
     <% if members.many? %>
       <div class="avatar__group">
         <% members.first(4).each do |member| %>
-          <span class="avatar">
+          <span class="avatar user-status-container">
             <%= image_tag fresh_user_avatar_path(member), size: 20, aria: { hidden: "true" } %>
+            <%= user_status_tag(member) %>
           </span>
         <% end %>
       </div>
     <% else %>
-      <span class="avatar">
+      <span class="avatar user-status-container">
         <%= image_tag fresh_user_avatar_path(members.first), size: 48, aria: { hidden: "true" } %>
+        <%= user_status_tag(members.first) %>
       </span>
     <% end %>
 

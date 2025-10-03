@@ -35,6 +35,16 @@ module ApplicationHelper
     end
   end
 
+  def current_user_id
+    return Current.user.id unless Current.user.nil?
+
+    nil
+  end
+
+  def is_user_bot?(user)
+    user.role == "bot"
+  end
+
   private
     def admin_body_class
       "admin" if Current.user&.can_administer?
